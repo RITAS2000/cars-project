@@ -1,7 +1,6 @@
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 80px;
     padding-bottom: 124px;
     
@@ -12,11 +11,17 @@
     flex-direction: row;
     column-gap: 32px;
     row-gap: 48px;
+    align-items: flex-start;
 }
 .item {
    
     height: 424px;
     flex: 0 0 calc(25% - 24px);
+}
+.buttonContainer {
+ display: flex;
+ align-items: center;
+ justify-content: center;
 }
 .button {
   width: 156px;

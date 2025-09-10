@@ -18,14 +18,16 @@ export default function CarsList({ cars, page, totalPages }) {
             </li>
           ))}
         </ul>
-        {page < totalPages && (
-          <button
-            className={css.button}
-            onClick={() => dispatch(fetchCarsPage(Number(page) + 1))}
-          >
-            Load more
-          </button>
-        )}
+        <div className={css.buttonContainer}>
+          {page < totalPages && (
+            <button
+              className={css.button}
+              onClick={() => dispatch(fetchCarsPage(Number(page) + 1))}
+            >
+              Load more
+            </button>
+          )}
+        </div>
       </div>
     </Container>
   );
