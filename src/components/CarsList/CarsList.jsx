@@ -8,13 +8,12 @@ import {
   selectIsLoadingMore,
 } from "../../redux/cars/selectors.js";
 import { ScaleLoader } from "react-spinners";
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 
 export default function CarsList({ cars, page, totalPages }) {
   const dispatch = useDispatch();
   const isLoadingInitial = useSelector(selectIsLoadingInitial);
   const isLoadingMore = useSelector(selectIsLoadingMore);
-  const listRef = useRef(null);
 
   useEffect(() => {
     if (!isLoadingMore && page > 1) {
@@ -57,7 +56,7 @@ export default function CarsList({ cars, page, totalPages }) {
         ) : cars.length === 0 ? (
           <p className={css.noCars}>No cars found for your search</p>
         ) : (
-          <ul ref={listRef} className={css.containerUl}>
+          <ul className={css.containerUl}>
             {cars.map((car) => (
               <li key={car.id} className={css.item}>
                 <CarCard car={car} />

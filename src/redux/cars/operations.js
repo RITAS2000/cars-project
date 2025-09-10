@@ -9,7 +9,7 @@ export const fetchCars = createAsyncThunk(
     try {
       const params = {};
       if (filters.brand) params.brand = filters.brand;
-      if (filters.price != null) params.rentalPrice = filters.price; // <- null не передається
+      if (filters.price != null) params.rentalPrice = filters.price;
       if (filters.minMileage != null) params.minMileage = filters.minMileage;
       if (filters.maxMileage != null) params.maxMileage = filters.maxMileage;
 
