@@ -1,0 +1,137 @@
+.container {
+    width: 100%;
+    padding: 84px 258px 56px 258px;
+}
+.formContainer {
+    display: flex;
+    gap: 16px;
+}
+.label {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: "Manrope", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 133%;
+    color: #8d929a;
+}
+.labelAll {
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: "Manrope", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 133%;
+    color: #8d929a;
+} 
+
+.inputLeft {
+    flex: 1;
+    border-radius: 12px 0 0 12px;
+    padding: 12px 24px 12px 65px;
+    width: 160px;
+    height: 44px;
+    background: #f7f7f7;
+    outline: none;
+    border: none;
+    border-right: 1px solid #dadde1;
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    color: #101828;
+}
+.inputRight {
+    flex: 1;
+    border-radius: 0 12px 12px 0;
+    padding: 12px 24px 12px 45px;
+    width: 160px;
+    height: 44px;
+    background: #f7f7f7;
+    outline: none;
+    border: none;
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    color: #101828;
+}
+.wrapper {
+    display: flex;
+}
+
+.icon {
+    position: absolute;
+    right: 16px;
+    top: 38px;
+    width: 16px;
+    height: 16px;
+    fill: #101828;
+    pointer-events: none;
+    transition: transform 0.8s ease;
+}
+
+.input:focus + .icon {
+    transform: rotate(180deg);
+}
+
+.noSpin::-webkit-inner-spin-button,
+.noSpin::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.noSpin {
+    -moz-appearance: textfield;
+}
+.inputWrapper{
+    position: relative;
+}
+.spanFrom {
+    position: absolute;
+    left: 24px;
+    top: 12px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    color: #101828;
+    pointer-events: none
+
+}
+.spanTo {
+    position: absolute;
+    left: 24px;
+    top: 12px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    color: #101828;
+    pointer-events: none
+}
+.button {
+    width: 156px;
+    height: 44px;
+    margin-top: 24px;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 51px;
+    background: #3470ff;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 125%;
+    color: #fff;
+    transition: background 0.8s ease;
+}
+
+.button:hover,
+.button:focus {
+    background: #0b44cd;
+}
