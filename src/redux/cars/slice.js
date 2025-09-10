@@ -8,7 +8,8 @@ const carsSlice = createSlice({
     totalCars: 0,
     page: 1,
     totalPages: 0,
-    isLoading: false,
+    isLoadingInitial: true,
+    isLoadingMore: false,
     error: null,
   },
   reducers: {
@@ -18,40 +19,47 @@ const carsSlice = createSlice({
       state.totalPages = action.payload.totalPages;
       state.page = action.payload.page;
     },
+    setLoadingInitial: (state, action) => {
+      state.isLoadingInitial = action.payload;
+    },
+    setLoadingMore: (state, action) => {
+      state.isLoadingMore = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCars.pending, (state) => {
-        state.isLoading = true;
+        state.isLoadingInitial = true;
         state.error = null;
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.isLoadingInitial = false;
         state.cars = action.payload.cars;
         state.totalCars = action.payload.totalCars;
         state.totalPages = action.payload.totalPages;
         state.page = action.payload.page;
       })
       .addCase(fetchCars.rejected, (state, action) => {
-        state.isLoading = false;
+        state.isLoadingInitial = false;
         state.error = action.payload;
       })
       .addCase(fetchCarsPage.pending, (state) => {
-        state.isLoading = true;
+        state.isLoadingMore = true;
       })
       .addCase(fetchCarsPage.fulfilled, (state, action) => {
         state.cars = [...state.cars, ...action.payload.cars];
         state.page = Number(action.payload.page);
         state.totalPages = action.payload.totalPages;
         state.totalCars = action.payload.totalCars;
-        state.isLoading = false;
+        state.isLoadingMore = false;
       })
       .addCase(fetchCarsPage.rejected, (state, action) => {
-        state.isLoading = false;
+        state.isLoadingMore = false;
         state.error = action.payload;
       });
   },
 });
 
-export const { addCarsPage } = carsSlice.actions;
+export const { addCarsPage, setLoadingInitial, setLoadingMore } =
+  carsSlice.actions;
 export default carsSlice.reducer;

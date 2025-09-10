@@ -5,13 +5,12 @@ import { fetchBrands } from "../../redux/brands/operations.js";
 import { fetchCars } from "../../redux/cars/operations.js";
 import { useEffect } from "react";
 import { selectBrands } from "../../redux/brands/selectors.js";
-import { selectCars, selectIsLoading } from "../../redux/cars/selectors.js";
+import { selectCars } from "../../redux/cars/selectors.js";
 import { selectFilters } from "../../redux/filters/selectors.js";
 
 export default function CarsPage() {
   const brands = useSelector(selectBrands);
   const cars = useSelector(selectCars);
-  const isLoading = useSelector(selectIsLoading);
   console.log("🚀 ~ CarsPage ~ cars:", cars);
 
   const filters = useSelector(selectFilters);
@@ -19,8 +18,10 @@ export default function CarsPage() {
 
   useEffect(() => {
     dispatch(fetchBrands());
-    dispatch(fetchCars());
-  }, [dispatch]);
+    if (!cars.page || cars.page === 1) {
+      dispatch(fetchCars());
+    }
+  }, [dispatch, cars.page]);
 
   const priceOptions = [30, 40, 50, 60, 70, 80].map((price) => ({
     value: price,
@@ -39,15 +40,11 @@ export default function CarsPage() {
     <div>
       <SearchBox brands={brands} priceOptions={priceOptions} />
 
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <CarsList
-          cars={filteredCars.length ? filteredCars : cars.cars}
-          page={cars.page}
-          totalPages={cars.totalPages}
-        />
-      )}
+      <CarsList
+        cars={filteredCars.length ? filteredCars : cars.cars}
+        page={cars.page}
+        totalPages={cars.totalPages}
+      />
     </div>
   );
 }

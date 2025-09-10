@@ -1,3 +1,4 @@
 export const selectCars = (state) => state.cars;
-export const selectIsLoading = (state) => state.cars.isLoading;
+export const selectIsLoadingInitial = (state) => state.cars.isLoadingInitial;
+export const selectIsLoadingMore = (state) => state.cars.isLoadingMore;
 export const selectError = (state) => state.cars.error;
