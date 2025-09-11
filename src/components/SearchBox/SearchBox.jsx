@@ -29,7 +29,7 @@ export default function SearchBox({ brands, priceOptions }) {
         : null,
     };
     dispatch(setFilters(filtersPayload));
-    dispatch(fetchCars(filtersPayload));
+    dispatch(fetchCars({ page: 1, filters: filtersPayload }));
     setBrandLocal(null);
     setPriceLocal(null);
     setMinMileageLocal("");

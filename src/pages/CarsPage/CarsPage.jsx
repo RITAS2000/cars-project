@@ -11,17 +11,15 @@ import { selectFilters } from "../../redux/filters/selectors.js";
 export default function CarsPage() {
   const brands = useSelector(selectBrands);
   const cars = useSelector(selectCars);
-  console.log("🚀 ~ CarsPage ~ cars:", cars);
 
   const filters = useSelector(selectFilters);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchBrands());
-    if (!cars.page || cars.page === 1) {
-      dispatch(fetchCars());
-    }
-  }, [dispatch, cars.page]);
+
+    dispatch(fetchCars({ page: 1, filters: {} }));
+  }, [dispatch]);
 
   const priceOptions = [30, 40, 50, 60, 70, 80].map((price) => ({
     value: price,
@@ -35,16 +33,12 @@ export default function CarsPage() {
     if (filters.maxMileage && car.mileage > filters.maxMileage) return false;
     return true;
   });
-  console.log("filteredCars", filteredCars.length, filteredCars);
+
   return (
     <div>
       <SearchBox brands={brands} priceOptions={priceOptions} />
 
-      <CarsList
-        cars={filteredCars.length ? filteredCars : cars.cars}
-        page={cars.page}
-        totalPages={cars.totalPages}
-      />
+      <CarsList cars={filteredCars.length ? filteredCars : cars.cars} />
     </div>
   );
 }

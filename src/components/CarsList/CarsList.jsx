@@ -6,14 +6,20 @@ import { fetchCarsPage } from "../../redux/cars/operations.js";
 import {
   selectIsLoadingInitial,
   selectIsLoadingMore,
+  selectPage,
+  selectTotalPages,
 } from "../../redux/cars/selectors.js";
 import { ScaleLoader } from "react-spinners";
 import { useEffect } from "react";
+import { selectFilters } from "../../redux/filters/selectors.js";
 
-export default function CarsList({ cars, page, totalPages }) {
+export default function CarsList({ cars }) {
   const dispatch = useDispatch();
   const isLoadingInitial = useSelector(selectIsLoadingInitial);
   const isLoadingMore = useSelector(selectIsLoadingMore);
+  const filters = useSelector(selectFilters);
+  const page = useSelector(selectPage);
+  const totalPages = useSelector(selectTotalPages);
 
   useEffect(() => {
     if (!isLoadingMore && page > 1) {
@@ -33,6 +39,8 @@ export default function CarsList({ cars, page, totalPages }) {
     }
   }, [cars, isLoadingMore, page]);
 
+  const pageNum = Number(page);
+  const totalPagesNum = Number(totalPages);
   return (
     <Container>
       <div className={css.container}>
@@ -65,10 +73,12 @@ export default function CarsList({ cars, page, totalPages }) {
           </ul>
         )}
         <div className={css.buttonContainer}>
-          {page < totalPages && (
+          {pageNum < totalPagesNum && (
             <button
               className={css.button}
-              onClick={() => dispatch(fetchCarsPage(Number(page) + 1))}
+              onClick={() =>
+                dispatch(fetchCarsPage({ page: Number(page) + 1, filters }))
+              }
             >
               {isLoadingMore ? (
                 <ScaleLoader
