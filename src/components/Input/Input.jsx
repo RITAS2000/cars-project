@@ -22,7 +22,8 @@ export default function Input() {
     setComment("");
     setSelectedDate(null);
   };
-
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
   return (
     <>
       <form className={css.container} onSubmit={handleSubmit}>
@@ -51,6 +52,7 @@ export default function Input() {
             onChange={(date) => setSelectedDate(date)}
             placeholderText="Booking date"
             dateFormat="d.MM.yyyy"
+            minDate={today}
             className={css.input}
             calendarStartDay={1}
             formatWeekDay={(day) => day.slice(0, 3)}
