@@ -1,37 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import css from "./CarCard.module.css";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { IoHeartSharp, IoHeartOutline } from "react-icons/io5";
+import { selectFavoritos } from "../../redux/favorites/selectors.js";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorite, removeFavorite } from "../../redux/favorites/slice.js";
 
 export default function CarCard({ car }) {
   const navigate = useNavigate();
-  const [favorites, setFavorites] = useState([]);
+  const dispatch = useDispatch();
+  const favorites = useSelector(selectFavoritos);
 
-  const toggleFavorite = (carId) => {
-    const saved = JSON.parse(localStorage.getItem("favorites")) || [];
+  const isFavorite = favorites.some((fav) => fav.id === car.id);
 
-    let updated;
-    if (saved.includes(carId)) {
-      updated = saved.filter((id) => id !== carId);
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      dispatch(removeFavorite(car));
     } else {
-      updated = [...saved, carId];
+      dispatch(addFavorite(car));
     }
-    localStorage.setItem("favorites", JSON.stringify(updated));
-  };
-  const getFavorites = () => {
-    return JSON.parse(localStorage.getItem("favorites")) || [];
   };
 
-  useEffect(() => {
-    setFavorites(getFavorites());
-  }, []);
-
-  const handleToggle = () => {
-    toggleFavorite(car.id);
-    setFavorites(getFavorites());
-  };
-
-  const isFavorite = favorites.includes(car.id);
   const [city, country] = car.address.split(",").slice(-2);
   const line1 = `${city} | ${country} | ${car.rentalCompany} |`;
   const type =
@@ -41,7 +30,7 @@ export default function CarCard({ car }) {
   return (
     <div className={css.container}>
       <div className={css.textContainer}>
-        <button className={css.heart} onClick={handleToggle}>
+        <button className={css.heart} onClick={toggleFavorite}>
           {isFavorite ? (
             <IoHeartSharp color="#3470ff" />
           ) : (
