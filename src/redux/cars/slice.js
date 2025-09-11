@@ -19,6 +19,12 @@ const carsSlice = createSlice({
     setLoadingMore: (state, action) => {
       state.isLoadingMore = action.payload;
     },
+    clearCars: (state) => {
+      state.cars = [];
+      state.totalCars = 0;
+      state.page = 1;
+      state.totalPages = 1;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -52,5 +58,6 @@ const carsSlice = createSlice({
   },
 });
 
-export const { setLoadingInitial, setLoadingMore } = carsSlice.actions;
+export const { setLoadingInitial, setLoadingMore, clearCars } =
+  carsSlice.actions;
 export default carsSlice.reducer;

@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { selectBrands } from "../../redux/brands/selectors.js";
 import { selectCars } from "../../redux/cars/selectors.js";
 import { selectFilters } from "../../redux/filters/selectors.js";
+import { clearCars } from "../../redux/cars/slice.js";
 
 export default function CarsPage() {
   const brands = useSelector(selectBrands);
@@ -17,7 +18,7 @@ export default function CarsPage() {
 
   useEffect(() => {
     dispatch(fetchBrands());
-
+    dispatch(clearCars());
     dispatch(fetchCars({ page: 1, filters: {}, limit: 12 }));
   }, [dispatch]);
 
