@@ -15,14 +15,14 @@ export default function SearchBox({ brands, priceOptions }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchCars({ page: 1, filters: filters, limit: 12 }));
-    dispatch(
-      setFilters({
-        brand: null,
-        price: null,
-        minMileage: null,
-        maxMileage: null,
-      })
-    );
+    // dispatch(
+    //   setFilters({
+    //     brand: null,
+    //     price: null,
+    //     minMileage: null,
+    //     maxMileage: null,
+    //   })
+    // );
   };
 
   const handleBrandChange = (value) => {
