@@ -73,7 +73,7 @@ export default function CarsList({ cars }) {
           </ul>
         )}
         <div className={css.buttonContainer}>
-          {pageNum < totalPagesNum && (
+          {pageNum < totalPagesNum && cars.length > 0 && (
             <button
               className={css.button}
               onClick={() =>
