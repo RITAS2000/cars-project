@@ -7,24 +7,32 @@ import { fetchCars } from "../../redux/cars/operations.js";
 import { setFilters } from "../../redux/filters/slice.js";
 
 import { selectFilters } from "../../redux/filters/selectors.js";
+import { selectCars, selectTotalCats } from "../../redux/cars/selectors.js";
+import { useEffect } from "react";
 
 export default function SearchBox({ brands, priceOptions }) {
   const dispatch = useDispatch();
   const filters = useSelector(selectFilters);
+  const cars = useSelector(selectCars);
+  const totalCars = useSelector(selectTotalCats);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(fetchCars({ page: 1, filters: filters, limit: 12 }));
-    // dispatch(
-    //   setFilters({
-    //     brand: null,
-    //     price: null,
-    //     minMileage: null,
-    //     maxMileage: null,
-    //   })
-    // );
-  };
 
+    dispatch(fetchCars({ page: 1, filters: filters, limit: 12 }));
+  };
+  useEffect(() => {
+    if (cars.cars.length === totalCars) {
+      dispatch(
+        setFilters({
+          brand: null,
+          price: null,
+          minMileage: null,
+          maxMileage: null,
+        })
+      );
+    }
+  }, [dispatch, cars, totalCars]);
   const handleBrandChange = (value) => {
     dispatch(setFilters({ ...filters, brand: value ? value.value : null }));
   };
