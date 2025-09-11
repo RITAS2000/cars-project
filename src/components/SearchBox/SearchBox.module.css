@@ -95,7 +95,7 @@
 .spanFrom {
     position: absolute;
     left: 24px;
-    top: 12px;
+    top: 13px;
     font-family: 'Manrope', sans-serif;
     font-weight: 500;
     font-size: 16px;
@@ -107,7 +107,7 @@
 .spanTo {
     position: absolute;
     left: 24px;
-    top: 12px;
+    top: 13px;
     font-family: 'Manrope', sans-serif;
     font-weight: 500;
     font-size: 16px;
