@@ -1,39 +1,52 @@
 import css from "./SearchBox.module.css";
 import { BsChevronDown } from "react-icons/bs";
 import Select, { components } from "react-select";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchCars } from "../../redux/cars/operations.js";
 
 import { setFilters } from "../../redux/filters/slice.js";
-import { useState } from "react";
+
+import { selectFilters } from "../../redux/filters/selectors.js";
 
 export default function SearchBox({ brands, priceOptions }) {
   const dispatch = useDispatch();
-
-  const [brandLocal, setBrandLocal] = useState(null);
-  const [priceLocal, setPriceLocal] = useState(null);
-  const [minMileageLocal, setMinMileageLocal] = useState("");
-  const [maxMileageLocal, setMaxMileageLocal] = useState("");
+  const filters = useSelector(selectFilters);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(fetchCars({ page: 1, filters: filters, limit: 12 }));
+    dispatch(
+      setFilters({
+        brand: null,
+        price: null,
+        minMileage: null,
+        maxMileage: null,
+      })
+    );
+  };
 
-    const filtersPayload = {
-      brand: brandLocal ? brandLocal.value : null,
-      price: priceLocal ? Number(priceLocal.value) : null,
-      minMileage: minMileageLocal
-        ? Number(minMileageLocal.replace(/,/g, ""))
-        : null,
-      maxMileage: maxMileageLocal
-        ? Number(maxMileageLocal.replace(/,/g, ""))
-        : null,
-    };
-    dispatch(setFilters(filtersPayload));
-    dispatch(fetchCars({ page: 1, filters: filtersPayload, limit: 12 }));
-    setBrandLocal(null);
-    setPriceLocal(null);
-    setMinMileageLocal("");
-    setMaxMileageLocal("");
+  const handleBrandChange = (value) => {
+    dispatch(setFilters({ ...filters, brand: value ? value.value : null }));
+  };
+
+  const handlePriceChange = (value) => {
+    dispatch(
+      setFilters({ ...filters, price: value ? Number(value.value) : null })
+    );
+  };
+
+  const handleMinMileageChange = (e) => {
+    const rawValue = e.target.value.replace(/,/g, "").slice(0, 6); // максимум 6 цифр
+    dispatch(
+      setFilters({ ...filters, minMileage: rawValue ? Number(rawValue) : null })
+    );
+  };
+
+  const handleMaxMileageChange = (e) => {
+    const rawValue = e.target.value.replace(/,/g, "").slice(0, 6);
+    dispatch(
+      setFilters({ ...filters, maxMileage: rawValue ? Number(rawValue) : null })
+    );
   };
 
   const formatNumber = (num) => {
@@ -50,8 +63,12 @@ export default function SearchBox({ brands, priceOptions }) {
             Car brand
             <Select
               components={{ DropdownIndicator }}
-              value={brandLocal}
-              onChange={(value) => setBrandLocal(value)}
+              value={
+                filters.brand
+                  ? { value: filters.brand, label: filters.brand }
+                  : null
+              }
+              onChange={handleBrandChange}
               options={brands.map((b) => ({ value: b, label: b }))}
               placeholder="Choose a brand"
               classNamePrefix="custom-select"
@@ -159,8 +176,12 @@ export default function SearchBox({ brands, priceOptions }) {
             Price/ 1 hour
             <Select
               components={{ DropdownIndicator }}
-              value={priceLocal}
-              onChange={(value) => setPriceLocal(value)}
+              value={
+                filters.price
+                  ? { value: filters.price, label: filters.price }
+                  : null
+              }
+              onChange={handlePriceChange}
               options={priceOptions}
               placeholder="Choose a price"
               formatOptionLabel={(option, { context }) => {
@@ -274,12 +295,8 @@ export default function SearchBox({ brands, priceOptions }) {
                 <input
                   type="text"
                   className={`${css.inputLeft} ${css.noSpin}`}
-                  value={formatNumber(minMileageLocal)}
-                  onChange={(e) =>
-                    setMinMileageLocal(
-                      e.target.value.replace(/,/g, "").slice(0, 6)
-                    )
-                  }
+                  value={formatNumber(filters.minMileage)}
+                  onChange={handleMinMileageChange}
                 />
               </div>
               <div className={css.inputWrapper}>
@@ -287,12 +304,8 @@ export default function SearchBox({ brands, priceOptions }) {
                 <input
                   type="text"
                   className={`${css.inputRight} ${css.noSpin}`}
-                  value={formatNumber(maxMileageLocal)}
-                  onChange={(e) =>
-                    setMaxMileageLocal(
-                      e.target.value.replace(/,/g, "").slice(0, 6)
-                    )
-                  }
+                  value={formatNumber(filters.maxMileage)}
+                  onChange={handleMaxMileageChange}
                 />
               </div>
             </div>

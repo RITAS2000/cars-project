@@ -77,9 +77,7 @@ export default function CarsList({ cars }) {
             <button
               className={css.button}
               onClick={() =>
-                dispatch(
-                  fetchCars({ page: Number(page) + 1, filters, limit: 12 })
-                )
+                dispatch(fetchCars({ page: pageNum + 1, filters, limit: 12 }))
               }
             >
               {isLoadingMore ? (
