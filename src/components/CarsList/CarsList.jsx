@@ -2,7 +2,7 @@ import Container from "../Container/Container.jsx";
 import CarCard from "../CarCard/CarCard.jsx";
 import css from "./CarsList.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCarsPage } from "../../redux/cars/operations.js";
+import { fetchCars } from "../../redux/cars/operations.js";
 import {
   selectIsLoadingInitial,
   selectIsLoadingMore,
@@ -77,7 +77,9 @@ export default function CarsList({ cars }) {
             <button
               className={css.button}
               onClick={() =>
-                dispatch(fetchCarsPage({ page: Number(page) + 1, filters }))
+                dispatch(
+                  fetchCars({ page: Number(page) + 1, filters, limit: 12 })
+                )
               }
             >
               {isLoadingMore ? (

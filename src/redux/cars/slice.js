@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCars, fetchCarsPage } from "./operations";
+import { fetchCars } from "./operations";
 
 const carsSlice = createSlice({
   name: "cars",
@@ -13,12 +13,6 @@ const carsSlice = createSlice({
     error: null,
   },
   reducers: {
-    addCarsPage: (state, action) => {
-      state.cars = [...state.cars, ...action.payload.cars]; // додаємо нові
-      state.totalCars = action.payload.totalCars;
-      state.page = Number(action.payload.page);
-      state.totalPages = Number(action.payload.totalPages);
-    },
     setLoadingInitial: (state, action) => {
       state.isLoadingInitial = action.payload;
     },
@@ -29,43 +23,34 @@ const carsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCars.pending, (state, action) => {
-        const page = action.meta.arg?.page || 1; // дефолт 1, якщо не передано
+        const page = action.meta.arg?.page || 1;
 
         if (page === 1) {
           state.isLoadingInitial = true;
-          state.cars = []; // новий пошук
+          state.cars = [];
         } else {
           state.isLoadingMore = true;
         }
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
-        state.isLoadingInitial = false;
-        state.cars = action.payload.cars;
+        if (action.meta.arg.page === 1) {
+          state.cars = action.payload.cars;
+        } else {
+          state.cars = [...state.cars, ...action.payload.cars];
+          state.isLoadingMore = false;
+        }
         state.totalCars = action.payload.totalCars;
-        state.page = Number(action.payload.page);
-        state.totalPages = Number(action.payload.totalPages);
+        state.totalPages = action.payload.totalPages;
+        state.page = action.payload.page;
+        state.isLoadingInitial = false;
       })
       .addCase(fetchCars.rejected, (state, action) => {
         state.isLoadingInitial = false;
-        state.error = action.payload;
-      })
-      .addCase(fetchCarsPage.pending, (state) => {
-        state.isLoadingMore = true;
-      })
-      .addCase(fetchCarsPage.fulfilled, (state, action) => {
-        state.cars = [...state.cars, ...action.payload.cars];
-        state.page = Number(action.payload.page);
-        state.totalPages = Number(action.payload.totalPages);
-        state.totalCars = action.payload.totalCars;
-        state.isLoadingMore = false;
-      })
-      .addCase(fetchCarsPage.rejected, (state, action) => {
         state.isLoadingMore = false;
         state.error = action.payload;
       });
   },
 });
 
-export const { addCarsPage, setLoadingInitial, setLoadingMore } =
-  carsSlice.actions;
+export const { setLoadingInitial, setLoadingMore } = carsSlice.actions;
 export default carsSlice.reducer;

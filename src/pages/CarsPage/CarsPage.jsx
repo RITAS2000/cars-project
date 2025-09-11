@@ -18,7 +18,7 @@ export default function CarsPage() {
   useEffect(() => {
     dispatch(fetchBrands());
 
-    dispatch(fetchCars({ page: 1, filters: {} }));
+    dispatch(fetchCars({ page: 1, filters: {}, limit: 12 }));
   }, [dispatch]);
 
   const priceOptions = [30, 40, 50, 60, 70, 80].map((price) => ({
