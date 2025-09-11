@@ -1,12 +1,28 @@
-# React + Vite
+# Car Rental App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Опис проєкту
 
-Currently, two official plugins are available:
+Car Rental App — це веб-додаток для оренди автомобілів.  
+Користувачі можуть переглядати доступні автомобілі, фільтрувати їх за брендом, ціною та пробігом, додавати автомобілі до обраного та поступово завантажувати список авто за допомогою кнопки **"Load More"**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Основні функції
 
-## Expanding the ESLint configuration
+- Перегляд списку автомобілів з пагінацією.
+- Фільтрація за брендом, ціною та пробігом.
+- Додавання автомобілів у обране.
+- Відображення даних у зручному відформатованому вигляді.
+- Поступове завантаження списку авто (**Lazy Loading**).
+- Перехід на сторінку автомобіля при натисканні кнопки **"Read More"**, де доступна форма замовлення.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Використання
+
+- Використовуйте панель фільтрів для пошуку потрібного авто.
+- Натискайте кнопку **"Load More"**, щоб завантажити більше автомобілів.
+- Натисніть кнопку **"Read More"**, щоб переглянути деталі авто та заповнити форму замовлення.
+- Додавайте автомобілі у список обраного.
+
+## Автор
+
+Ім'я: Yuliya Lev
+GitHub: https://github.com/RITAS2000
+Email: yuliya.lev.2000@gmail.com
