@@ -101,4 +101,5 @@ padding: 32px;
 .iconCheck {
     display: flex;
     gap: 8px;
+    align-items: center;
 }

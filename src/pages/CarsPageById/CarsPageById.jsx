@@ -72,72 +72,72 @@ export default function CarsPageById() {
           <div className={css.carOption}>
             <div>
               <h3 className={css.rentalTitle}>Rental Conditions:</h3>
-              <div className={css.rentalContainer}>
-                <div className={css.iconCheck}>
+              <ul className={css.rentalContainer}>
+                <li className={css.iconCheck}>
                   <BsCheckCircle />
                   <p>{car.rentalConditions[0]}</p>
-                </div>
-                <div className={css.iconCheck}>
+                </li>
+                <li className={css.iconCheck}>
                   <BsCheckCircle />
                   <p>{car.rentalConditions[2]}</p>
-                </div>
-                <div className={css.iconCheck}>
+                </li>
+                <li className={css.iconCheck}>
                   <BsCheckCircle />
                   <p>{car.rentalConditions[1]}</p>
-                </div>
-              </div>
+                </li>
+              </ul>
             </div>
             <div>
               <h3 className={css.rentalTitle}>Car Specifications:</h3>
-              <div className={css.rentalContainer}>
-                <div className={css.iconCheck}>
+              <ul className={css.rentalContainer}>
+                <li className={css.iconCheck}>
                   <BsCalendar2Week />
                   <p>Year: {car.year}</p>
-                </div>
-                <div className={css.iconCheck}>
+                </li>
+                <li className={css.iconCheck}>
                   <BsCarFront />
                   <p>Type: {type}</p>
-                </div>
-                <div className={css.iconCheck}>
+                </li>
+                <li className={css.iconCheck}>
                   <BsFuelPump />
                   <p>Fuel Consumption: {car.fuelConsumption}</p>
-                </div>
-                <div className={css.iconCheck}>
+                </li>
+                <li className={css.iconCheck}>
                   <BsGear />
                   <p>Engine Size: {car.engineSize}</p>
-                </div>
-              </div>
+                </li>
+              </ul>
             </div>
             <div>
               <h3 className={css.rentalTitle}>
                 Accessories and functionalities:
               </h3>
-              <div className={css.rentalContainer}>
-                <div className={css.iconCheck}>
+              <ul className={css.rentalContainer}>
+                <li className={css.iconCheck}>
                   <BsCheckCircle />
                   <p>{car.accessories[0]}</p>
-                </div>
-                <div className={css.iconCheck}>
+                </li>
+                <li className={css.iconCheck}>
                   <BsCheckCircle />
                   <p>{car.accessories[1]}</p>
-                </div>
-                <div className={css.iconCheck}>
+                </li>
+                <li className={css.iconCheck}>
                   <BsCheckCircle />
                   <p>{car.functionalities[1]}</p>
-                </div>
-                <div className={css.iconCheck}>
+                </li>
+                <li className={css.iconCheck}>
                   <BsCheckCircle />
                   <p>{car.functionalities[2]}</p>
-                </div>
-                <div className={css.iconCheck}>
+                </li>
+                <li className={css.iconCheck}>
                   <BsCheckCircle />
                   <p>{car.functionalities[0]}</p>
-                </div>
-                <div className={css.iconCheck}>
+                </li>
+                <li className={css.iconCheck}>
                   <BsCheckCircle />
                   <p>{car.accessories[2]}</p>
-                </div>
-              </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
