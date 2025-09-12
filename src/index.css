@@ -36,3 +36,6 @@ img {
   height: auto;
   margin: 0 auto;
 }
+textarea {
+  resize: none;
+}

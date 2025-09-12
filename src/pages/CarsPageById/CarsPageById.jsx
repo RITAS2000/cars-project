@@ -70,7 +70,7 @@ export default function CarsPageById() {
             <p className={css.textCity}>{car.description}</p>
           </div>
           <div className={css.carOption}>
-            <div>
+            <section>
               <h3 className={css.rentalTitle}>Rental Conditions:</h3>
               <ul className={css.rentalContainer}>
                 <li className={css.iconCheck}>
@@ -86,8 +86,8 @@ export default function CarsPageById() {
                   <p>{car.rentalConditions[1]}</p>
                 </li>
               </ul>
-            </div>
-            <div>
+            </section>
+            <section>
               <h3 className={css.rentalTitle}>Car Specifications:</h3>
               <ul className={css.rentalContainer}>
                 <li className={css.iconCheck}>
@@ -107,8 +107,8 @@ export default function CarsPageById() {
                   <p>Engine Size: {car.engineSize}</p>
                 </li>
               </ul>
-            </div>
-            <div>
+            </section>
+            <section>
               <h3 className={css.rentalTitle}>
                 Accessories and functionalities:
               </h3>
@@ -138,7 +138,7 @@ export default function CarsPageById() {
                   <p>{car.accessories[2]}</p>
                 </li>
               </ul>
-            </div>
+            </section>
           </div>
         </div>
       </div>
