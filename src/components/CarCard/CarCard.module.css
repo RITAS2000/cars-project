@@ -86,10 +86,10 @@
     fill: #3470ff;
    
     stroke: #fff;
-    transition: fill 0.8s ease, stroke 0.8s ease;
+    /* transition: fill 0.8s ease, stroke 0.8s ease; */
 }
-.heart:hover svg {
+/* .heart:hover svg {
     fill: #0B44CD;
     stroke: #3470ff;
    
-}
+} */
