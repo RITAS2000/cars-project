@@ -31,11 +31,7 @@ export default function CarCard({ car }) {
     <div className={css.container}>
       <div className={css.textContainer}>
         <button className={css.heart} onClick={toggleFavorite}>
-          {isFavorite ? (
-            <IoHeartSharp color="#3470ff" />
-          ) : (
-            <IoHeartOutline color="#fff" />
-          )}
+          {isFavorite ? <IoHeartSharp /> : <IoHeartOutline />}
         </button>
         <img className={css.img} src={car.img} alt={car.brand} />
         <div>
