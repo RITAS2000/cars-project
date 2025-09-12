@@ -63,6 +63,11 @@
     font-size: 16px;
     line-height: 125%;
     color: #fff;
+    transition: background 0.8s ease;
+}
+.button:hover,
+.button:focus {
+    background: #0B44CD;
 }
 .customArrow {
     width: 24px;
