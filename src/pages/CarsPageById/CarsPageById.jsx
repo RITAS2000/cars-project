@@ -70,75 +70,71 @@ export default function CarsPageById() {
             <p className={css.textCity}>{car.description}</p>
           </div>
           <div className={css.carOption}>
-            <section>
-              <h3 className={css.rentalTitle}>Rental Conditions:</h3>
-              <ul className={css.rentalContainer}>
-                <li className={css.iconCheck}>
-                  <BsCheckCircle />
-                  <p>{car.rentalConditions[0]}</p>
-                </li>
-                <li className={css.iconCheck}>
-                  <BsCheckCircle />
-                  <p>{car.rentalConditions[2]}</p>
-                </li>
-                <li className={css.iconCheck}>
-                  <BsCheckCircle />
-                  <p>{car.rentalConditions[1]}</p>
-                </li>
-              </ul>
-            </section>
-            <section>
-              <h3 className={css.rentalTitle}>Car Specifications:</h3>
-              <ul className={css.rentalContainer}>
-                <li className={css.iconCheck}>
-                  <BsCalendar2Week />
-                  <p>Year: {car.year}</p>
-                </li>
-                <li className={css.iconCheck}>
-                  <BsCarFront />
-                  <p>Type: {type}</p>
-                </li>
-                <li className={css.iconCheck}>
-                  <BsFuelPump />
-                  <p>Fuel Consumption: {car.fuelConsumption}</p>
-                </li>
-                <li className={css.iconCheck}>
-                  <BsGear />
-                  <p>Engine Size: {car.engineSize}</p>
-                </li>
-              </ul>
-            </section>
-            <section>
-              <h3 className={css.rentalTitle}>
-                Accessories and functionalities:
-              </h3>
-              <ul className={css.rentalContainer}>
-                <li className={css.iconCheck}>
-                  <BsCheckCircle />
-                  <p>{car.accessories[0]}</p>
-                </li>
-                <li className={css.iconCheck}>
-                  <BsCheckCircle />
-                  <p>{car.accessories[1]}</p>
-                </li>
-                <li className={css.iconCheck}>
-                  <BsCheckCircle />
-                  <p>{car.functionalities[1]}</p>
-                </li>
-                <li className={css.iconCheck}>
-                  <BsCheckCircle />
-                  <p>{car.functionalities[2]}</p>
-                </li>
-                <li className={css.iconCheck}>
-                  <BsCheckCircle />
-                  <p>{car.functionalities[0]}</p>
-                </li>
-                <li className={css.iconCheck}>
-                  <BsCheckCircle />
-                  <p>{car.accessories[2]}</p>
-                </li>
-              </ul>
-            </section>
+            <h3 className={css.rentalTitle}>Rental Conditions:</h3>
+            <ul className={`${css.rentalContainer} ${css.marginForUl}`}>
+              <li className={css.iconCheck}>
+                <BsCheckCircle />
+                <p>{car.rentalConditions[0]}</p>
+              </li>
+              <li className={css.iconCheck}>
+                <BsCheckCircle />
+                <p>{car.rentalConditions[2]}</p>
+              </li>
+              <li className={css.iconCheck}>
+                <BsCheckCircle />
+                <p>{car.rentalConditions[1]}</p>
+              </li>
+            </ul>
+
+            <h3 className={css.rentalTitle}>Car Specifications:</h3>
+            <ul className={`${css.rentalContainer} ${css.marginForUl}`}>
+              <li className={css.iconCheck}>
+                <BsCalendar2Week />
+                <p>Year: {car.year}</p>
+              </li>
+              <li className={css.iconCheck}>
+                <BsCarFront />
+                <p>Type: {type}</p>
+              </li>
+              <li className={css.iconCheck}>
+                <BsFuelPump />
+                <p>Fuel Consumption: {car.fuelConsumption}</p>
+              </li>
+              <li className={css.iconCheck}>
+                <BsGear />
+                <p>Engine Size: {car.engineSize}</p>
+              </li>
+            </ul>
+
+            <h3 className={css.rentalTitle}>
+              Accessories and functionalities:
+            </h3>
+            <ul className={css.rentalContainer}>
+              <li className={css.iconCheck}>
+                <BsCheckCircle />
+                <p>{car.accessories[0]}</p>
+              </li>
+              <li className={css.iconCheck}>
+                <BsCheckCircle />
+                <p>{car.accessories[1]}</p>
+              </li>
+              <li className={css.iconCheck}>
+                <BsCheckCircle />
+                <p>{car.functionalities[1]}</p>
+              </li>
+              <li className={css.iconCheck}>
+                <BsCheckCircle />
+                <p>{car.functionalities[2]}</p>
+              </li>
+              <li className={css.iconCheck}>
+                <BsCheckCircle />
+                <p>{car.functionalities[0]}</p>
+              </li>
+              <li className={css.iconCheck}>
+                <BsCheckCircle />
+                <p>{car.accessories[2]}</p>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

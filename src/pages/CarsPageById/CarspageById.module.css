@@ -83,7 +83,10 @@ padding: 32px;
 .carOption {
     display: flex;
     flex-direction: column;
-    gap: 110px;
+   
+}
+.marginForUl {
+    margin-bottom: 110px;
 }
 .rentalTitle {
     font-family: "Manrope", sans-serif;
