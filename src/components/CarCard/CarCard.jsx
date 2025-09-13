@@ -5,6 +5,9 @@ import { IoHeartSharp, IoHeartOutline } from "react-icons/io5";
 import { selectFavoritos } from "../../redux/favorites/selectors.js";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, removeFavorite } from "../../redux/favorites/slice.js";
+import { BsFillHeartFill } from "react-icons/bs";
+
+import { BsHeart } from "react-icons/bs";
 
 export default function CarCard({ car }) {
   const navigate = useNavigate();
@@ -31,7 +34,11 @@ export default function CarCard({ car }) {
     <div className={css.container}>
       <div className={css.textContainer}>
         <button className={css.heart} onClick={toggleFavorite}>
-          {isFavorite ? <IoHeartSharp /> : <IoHeartOutline />}
+          {isFavorite ? (
+            <BsFillHeartFill color="#3470ff" />
+          ) : (
+            <BsHeart color=" #fff" />
+          )}
         </button>
         <img className={css.img} src={car.img} alt={car.brand} />
         <div>
